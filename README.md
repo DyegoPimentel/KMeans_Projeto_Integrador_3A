@@ -20,6 +20,10 @@ Neste Projeto Integrador iremos utilizar a tecnica de Aprendizado não supervisi
 <p><code>pip install wheel</code></p>
 <p><code>pip install pandas</code></p>
 
+<p>Usaremos o Matplotlib para gerar os graficos, para isso basta inserir via prompt de comando o seguinte codigo:</p>
+
+<p><code>python -m pip install -U matplotlib</code></p>
+
 <p><strong>Arquivos Inclusos</strong></p>
 
 <p>O arquivo “dataset.py” é responsável por criar o banco de dados “projeto_integrador_3A”, e criar a coleção “sintomas”. Dentro desta coleção, será inserido 30 documentos de pacientes com 3 doenças distintas (COVID-19, Dengue, Ansiedade). Este dataset é fictício, fique à vontade para usar outro dataset caso tenha interesse.</p>
