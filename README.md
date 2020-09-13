@@ -15,6 +15,11 @@ Neste Projeto Integrador iremos utilizar a tecnica de Aprendizado não supervisi
 
 <p><code>python -m pip install pymongo</code></p>
 
+<p>Precisaremos do modulo "Pandas" para o nosso algoritimo, para isso basta inserir via prompt de comando os seguintes codigos:
+
+<p><code>pip install wheel</code></p>
+<p><code>pip install pandas</code></p>
+
 <p><strong>Arquivos Inclusos</strong></p>
 
 <p>O arquivo “dataset.py” é responsável por criar o banco de dados “projeto_integrador_3A”, e criar a coleção “sintomas”. Dentro desta coleção, será inserido 30 documentos de pacientes com 3 doenças distintas (COVID-19, Dengue, Ansiedade). Este dataset é fictício, fique à vontade para usar outro dataset caso tenha interesse.</p>
