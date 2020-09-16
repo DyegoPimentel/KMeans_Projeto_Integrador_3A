@@ -1,4 +1,4 @@
-# Projeto_Integrador_3A (KMeans - Aprendizado Não Supervisionado)
+# Projeto_Integrador_3A <br> KMeans - Aprendizado Não Supervisionado
 Neste Projeto Integrador iremos utilizar a tecnica de Aprendizado não supervisionado (K-Means) para classificar doenças através dos sintomas dos pacientes.
 
 <p><strong> Programas necessarios </strong></p>
