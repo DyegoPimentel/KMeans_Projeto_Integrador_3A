@@ -34,5 +34,13 @@ Neste Projeto Integrador iremos utilizar a tecnica de Aprendizado não supervisi
 
 <p>O arquivo "kmeans.py" é responsavel por realizar o agrupamento dos pacientes baseado nos sintomas, e após os clusters serem formados, um grafico informando a qual cluster cada doença pertence é gerado. </p>
 
+<p><strong>Pontifícia Universidade Católica de Goiás</strong></p>
+
+<p><strong>PROJETO INTEGRADOR 3-A</strong></p>
+
+<p>Curso: Big Data e Inteligência Artificial
+Professor: Gustavo Siqueira Vinhal
+Alunos: Diego de Medeiros, Dyego Pimentel, Vanessa Pereira, Ysaque Araujo.
+Semestre: 2020/2</p>
 
 
