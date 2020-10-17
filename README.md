@@ -32,7 +32,7 @@ Neste Projeto Integrador iremos utilizar a tecnica de Aprendizado não supervisi
 
 <p>O arquivo “dataset.py” é responsável por criar o banco de dados “projeto_integrador_3A”, e criar a coleção “sintomas”. Dentro desta coleção, será inserido 30 documentos de pacientes com 3 doenças distintas (COVID-19, Dengue, Depressão). Este dataset é fictício, fique à vontade para usar outro dataset caso tenha interesse.</p>
 
-<p>O arquivo "kmeans.py" é responsavel por realizar o agrupamento dos pacientes baseado nos sintomas, e após os clusters serem formados, um grafico informando a qual cluster cada doença pertence é gerado. </p>
+<p>O arquivo "kmeans.py" é responsavel por realizar o agrupamento dos pacientes baseado nos sintomas, e após os clusters serem formados, um grafico informando a qual cluster cada doença pertence é gerado. </p><br><br>
 
 <p><strong>Pontifícia Universidade Católica de Goiás<br>
 PROJETO INTEGRADOR 3-A</strong></p>
