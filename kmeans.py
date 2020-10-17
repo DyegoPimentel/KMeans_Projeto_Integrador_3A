@@ -57,7 +57,8 @@ del df['_id']
 # Este metodo importa Google Sheets via link e converte para   #
 # csv, indicada caso não possa instalar o mongoDB local.       #
 
-""" DESCOMENTE AQUI SE QUISER USAR O GOOGLE SHEETS COMO BANCO DE 
+"""
+DESCOMENTE AQUI SE QUISER USAR O GOOGLE SHEETS COMO BANCO DE 
 DADOS.
 
 googleSheetId = '1IVDqFrB1XLnhbrLiJW34BPkgNUXWdySsDSFH1XYxyeI'
@@ -74,12 +75,13 @@ df = pd.read_csv(urlGoogle)
 
 # Aqui foi criado um dataframe com a variavel "dados" para que 
 # possamos manipular os dados sem interferir no banco de dados.
-dados = pd.DataFrame(data=df, columns=['id_paciente','nome','id_sintomas','sintomas'])
+dados = pd.DataFrame(data=df, columns=['id_paciente','nome','id_sintoma_1','sintoma 1','id_sintoma_2','sintoma 2'])
 
 
 # A variavel X recebe as colunas de id de pacientes e sintomas, 
 # para ser utilizada no kmeans.
-X = df[['id_paciente','id_sintomas']]
+X = df[['id_paciente','id_sintoma_1','id_sintoma_2']]
+
 
 # Kmeans
 kmeans = KMeans(n_clusters = 3, max_iter = 300, n_init = 10)
@@ -87,7 +89,7 @@ clusters = kmeans.fit_predict(X)
 
 # Insere a coluna "cluster" no dataframe "dados", assim podemos
 # identificar em qual grupo cada paciente esta.
-dados.insert(loc=4, column='cluster', value=clusters)
+dados.insert(loc=6, column='cluster', value=clusters)
 
 # x representa os pacientes e os devidos sintomas.
 x = X.to_numpy()
@@ -102,14 +104,31 @@ grupo1 = dados.loc[dados['cluster'] == 1]
 # Aqui gera uma tabela com todos os pacientes do cluster 2
 grupo2 = dados.loc[dados['cluster'] == 2]
 
+# Nesta etapa, verificamos quais os sintomas estão presentes em cada grupo, desta forma conseguimos
+# identificar qual doença cada grupo representa.
+
+covid0 = grupo0['id_sintoma_1'].isin(['1','3']).any() and grupo0['id_sintoma_2'].isin(['1','3']).any()
+dengue0 = grupo0['id_sintoma_1'].isin(['4','6']).any() and grupo0['id_sintoma_2'].isin(['4','6']).any()
+depressao0 = grupo0['id_sintoma_1'].isin(['7','9']).any() and grupo0['id_sintoma_2'].isin(['7','9']).any()
+
+covid1 = grupo1['id_sintoma_1'].isin(['1','3']).any() and grupo1['id_sintoma_2'].isin(['1','3']).any()
+dengue1 = grupo1['id_sintoma_1'].isin(['4','6']).any() and grupo1['id_sintoma_2'].isin(['4','6']).any()
+depressao1 = grupo1['id_sintoma_1'].isin(['7','9']).any() and grupo1['id_sintoma_2'].isin(['7','9']).any()
+
+covid2 = grupo2['id_sintoma_1'].isin(['1','3']).any() and grupo2['id_sintoma_2'].isin(['1','3']).any()
+dengue2 = grupo2['id_sintoma_1'].isin(['4','6']).any() and grupo2['id_sintoma_2'].isin(['4','6']).any()
+depressao2 = grupo2['id_sintoma_1'].isin(['7','9']).any() and grupo2['id_sintoma_2'].isin(['7','9']).any()
+
+print(covid0)
+
 ################################################################
 ###############             GRAFICOS             ###############
 ################################################################
 
 # Este if verifica quais são os sintomas do grupo 0 e 
 # retorna a legenda adequada.
-if grupo0['id_sintomas'].isin(['1.0','1.9']).any(): # Aqui verifica se os sintomas dos pacientes do grupo 0 estão
-# entre 1.0 e 1.9(identificação dos sintomas), se sim, significa que os pacientes do grupo 0 são os pacientes com 
+if covid0: # Aqui verifica se os sintomas dos pacientes do grupo 0 estão
+# entre 1 e 3(identificação dos sintomas), se sim, significa que os pacientes do grupo 0 são os pacientes com 
 # COVID. Se não vai para etapa do elif e continua a verificação até descobrir qual a doença esta relacionada ao
 # grupo 0.
     plt.scatter( # essa função plota os pontos no grafico.
@@ -117,7 +136,7 @@ if grupo0['id_sintomas'].isin(['1.0','1.9']).any(): # Aqui verifica se os sintom
     s=50, c='red', # s=size | c=color
     label='COVID-19 (CLUSTER 0)' # legenda
     )
-elif grupo0['id_sintomas'].isin(['2.0','2.9']).any() :
+elif dengue0:
     plt.scatter(
     x[clusters == 0,0], x[clusters == 0,1],
     s=50, c='orange',
@@ -132,13 +151,13 @@ else:
 
 # Este if verifica quais são os sintomas do grupo 1 e 
 # retorna a legenda adequada.
-if grupo1['id_sintomas'].isin(['1.0','1.9']).any():
+if covid1:
     plt.scatter( # essa função plota os pontos no grafico.
     x[clusters == 1,0], x[clusters == 1,1],
     s=50, c='red', # s=size | c=color
     label='COVID-19 (CLUSTER 1)' # legenda
     )
-elif grupo1['id_sintomas'].isin(['2.0','2.9']).any() :
+elif dengue1:
     plt.scatter(
     x[clusters == 1,0], x[clusters == 1,1],
     s=50, c='orange',
@@ -153,13 +172,13 @@ else:
 
 # Este if verifica quais são os sintomas do grupo 2 e
 # retorna a legenda adequada.
-if grupo2['id_sintomas'].isin(['1.0','1.9']).any():
+if  covid2:
     plt.scatter( # essa função plota os pontos no grafico.
     x[clusters == 2,0], x[clusters == 2,1],
     s=50, c='red', # s=size | c=color
     label='COVID-19 (CLUSTER 2)' # legenda
     )
-elif grupo2['id_sintomas'].isin(['2.0','2.9']).any() :
+elif dengue2:
     plt.scatter(
     x[clusters == 2,0], x[clusters == 2,1],
     s=50, c='orange',
